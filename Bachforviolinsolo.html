@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>โซนาตาและพาร์ติตาไวโอลินเดี่ยวของบัค — ศตวรรษครึ่งแรกแห่งประวัติศาสตร์</title>
+<style>
+  :root {
+    --green-deep: #0a2f23;
+    --green-dark: #123f30;
+    --green-mid: #1c5741;
+    --gold: #c9a227;
+    --gold-light: #e3c766;
+    --cream: #f4ecd9;
+    --parchment: #efe6cf;
+    --ink: #24352d;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Georgia', 'Angsana New', 'Leelawadee UI', serif;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(201,162,39,.06) 0%, transparent 40%),
+      radial-gradient(circle at 85% 70%, rgba(201,162,39,.05) 0%, transparent 40%),
+      var(--green-deep);
+    color: var(--cream);
+    line-height: 2;
+    font-size: 1.02rem;
+  }
+
+  /* ─── กรอบบาร็อกด้านนอก ─── */
+  .frame {
+    max-width: 980px;
+    margin: 28px auto;
+    border: 3px double var(--gold);
+    outline: 1px solid rgba(201,162,39,.35);
+    outline-offset: 6px;
+    background: linear-gradient(180deg, var(--green-dark) 0%, var(--green-deep) 100%);
+    box-shadow: 0 25px 60px rgba(0,0,0,.55);
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    text-align: center;
+    padding: 64px 40px 48px;
+    background:
+      radial-gradient(ellipse at top, rgba(201,162,39,.14), transparent 65%),
+      var(--green-dark);
+    border-bottom: 2px solid var(--gold);
+    position: relative;
+  }
+  header::before, header::after {
+    content: "❦";
+    position: absolute;
+    top: 26px;
+    color: var(--gold);
+    font-size: 1.6rem;
+    opacity: .8;
+  }
+  header::before { left: 34px; }
+  header::after { right: 34px; }
+  .ornament-line {
+    color: var(--gold);
+    letter-spacing: 12px;
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    color: var(--gold-light);
+    text-shadow: 0 2px 10px rgba(0,0,0,.5);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .subtitle-en {
+    font-style: italic;
+    color: var(--cream);
+    opacity: .85;
+    font-size: 1.05rem;
+  }
+  .byline {
+    margin-top: 22px;
+    font-size: .95rem;
+    color: var(--gold-light);
+  }
+  .byline span { color: var(--cream); opacity: .9; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10,47,35,.97);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--gold);
+    text-align: center;
+    padding: 6px 0;
+  }
+  nav a {
+    display: inline-block;
+    color: var(--gold-light);
+    text-decoration: none;
+    padding: 10px 18px;
+    font-size: .95rem;
+    transition: all .25s;
+    border-bottom: 2px solid transparent;
+  }
+  nav a:hover {
+    color: #fff;
+    border-bottom-color: var(--gold);
+  }
+
+  /* ─── MAIN ─── */
+  main {
+    padding: 50px 56px 60px;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 60px, rgba(201,162,39,.02) 60px 120px),
+      linear-gradient(180deg, var(--green-deep), #0c3527 50%, var(--green-deep));
+  }
+
+  section { margin-bottom: 72px; scroll-margin-top: 80px; }
+
+  h2 {
+    font-size: 1.55rem;
+    color: var(--gold-light);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .h2-rule {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 34px;
+    color: var(--gold);
+  }
+  .h2-rule::before, .h2-rule::after {
+    content: "";
+    height: 1px;
+    width: min(160px, 28vw);
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  .h2-rule::after { background: linear-gradient(90deg, var(--gold), transparent); }
+
+  p { margin-bottom: 20px; text-align: justify; text-indent: 2.5em; }
+  p.noindent { text-indent: 0; }
+  b, strong { color: var(--gold-light); }
+
+  ul.plain { list-style: none; margin: 0 0 20px; }
+  ul.plain li {
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 16px;
+    text-align: justify;
+  }
+  ul.plain li::before {
+    content: "❧";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  blockquote {
+    background: rgba(201,162,39,.07);
+    border: 1px solid rgba(201,162,39,.35);
+    border-left: 5px solid var(--gold);
+    margin: 26px auto;
+    padding: 22px 30px;
+    font-style: italic;
+    border-radius: 0 14px 14px 0;
+    box-shadow: inset 0 0 30px rgba(0,0,0,.25);
+  }
+  blockquote footer {
+    margin-top: 10px;
+    font-style: normal;
+    text-align: right;
+    color: var(--gold-light);
+    font-size: .92rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 26px 0;
+    background: rgba(18,63,48,.5);
+    border: 1px solid rgba(201,162,39,.4);
+    font-size: .96rem;
+  }
+  caption {
+    caption-side: top;
+    color: var(--gold);
+    font-style: italic;
+    padding-bottom: 10px;
+  }
+  th {
+    background: var(--green-mid);
+    color: var(--gold-light);
+    padding: 12px 16px;
+    border: 1px solid rgba(201,162,39,.35);
+    text-align: left;
+  }
+  td {
+    padding: 11px 16px;
+    border: 1px solid rgba(201,162,39,.25);
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(201,162,39,.08); }
+
+  .dropcap::first-letter {
+    float: left;
+    font-size: 3.4em;
+    line-height: .9;
+    padding: 6px 12px 0 0;
+    color: var(--gold);
+    font-weight: bold;
+  }
+
+  hr.fleuron {
+    border: none;
+    text-align: center;
+    margin: 44px 0;
+  }
+  hr.fleuron::after {
+    content: "⚜ ⚜ ⚜ ⚜";
+    color: var(--gold);
+    letter-spacing: 10px;
+    font-size: 1.1rem;
+  }
+
+  /* เชิงอรรถ */
+  ol.footnotes {
+    font-size: .88rem;
+    color: rgba(244,236,217,.85);
+    padding-left: 24px;
+  }
+  ol.footnotes li { margin-bottom: 10px; text-align: left; }
+
+  aside.postscript {
+    border: 1px dashed rgba(201,162,39,.5);
+    background: rgba(201,162,39,.06);
+    padding: 24px 28px;
+    border-radius: 12px;
+    margin-top: 40px;
+  }
+  aside.postscript h3 {
+    color: var(--gold-light);
+    margin-bottom: 14px;
+    font-size: 1.1rem;
+  }
+  aside.postscript p { font-size: .95rem; text-indent: 0; }
+
+  footer.site-footer {
+    text-align: center;
+    padding: 34px 20px 40px;
+    border-top: 2px solid var(--gold);
+    background: var(--green-dark);
+    font-size: .88rem;
+    color: rgba(244,236,217,.75);
+  }
+  footer.site-footer .ornament-line { margin: 0 0 12px; }
+
+  @media (max-width: 700px) {
+    main { padding: 36px 22px; }
+    nav a { padding: 8px 10px; font-size: .82rem; }
+    header { padding: 46px 20px 36px; }
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+<header id="top">
+  <div class="ornament-line">✦ ✦ ✦</div>
+  <h1>โซนาตาและพาร์ติตาสำหรับไวโอลินเดี่ยวของบัค<br>ศตวรรษครึ่งแรกแห่งประวัติศาสตร์ &mdash; ภาคที่หนึ่ง</h1>
+  <p class="subtitle-en">Bach&rsquo;s Solo Violin Sonatas and Partitas: The First Century and a Half</p>
+  <p class="byline">
+    โดย <span>เซย์ เดวิด ซีเวียร์</span> &middot; มหาวิทยาลัยโอไฮโอสเตต วิทยาเขตแมนส์ฟีลด์<br>
+    <span>วารสาร Bach, Vol. 12, No. 2 (เมษายน 1981), หน้า 11&ndash;19</span><br>
+    จัดพิมพ์โดยสถาบันบัครีเมินชไนเดอร์
+  </p>
+</header>
+
+<nav>
+  <a href="#intro">บทนำ</a>
+  <a href="#pubs">สิ่งพิมพ์</a>
+  <a href="#lit">วรรณกรรมวิชาการ</a>
+  <a href="#conclusion">บทสรุป</a>
+  <a href="#notes">เชิงอรรถ</a>
+  <a href="#postscript">ภาคผนวก</a>
+</nav>
+
+<main>
+
+<!-- ═══════════ บทนำ ═══════════ -->
+<section id="intro">
+  <h2>บทนำ</h2>
+  <div class="h2-rule">❦</div>
+
+  <p class="dropcap noindent">ชื่อเสียงระดับนานาชาติของโยฮัน เซบาสเทียน บัค ในฐานะคีตกวีเอกได้รับการยอมรับอย่างบริบูรณ์ในที่สุด ก็ต่อเมื่อฉบับรวมผลงานทั้งหมดของเขาได้รับการจัดพิมพ์ใน <b>ฉบับบัค-เกเซลชาฟท์</b> ระหว่างปี 1851 ถึง 1899 ตลอดช่วงครึ่งศตวรรษดังกล่าว นักดนตรี นักวิชาการ และสาธารณชนต่างได้ตระหนักถึงความสำคัญของโซนาตาและพาร์ติตาสำหรับไวโอลินไม่มีเบสประกอบ (<b>BWV 1001&ndash;1006</b>) ณ ปี 1879 อันเป็นปีที่ผลงานชุด &ldquo;โซโล&rdquo; เหล่านี้ได้รับการตีพิมพ์อย่างมีผลจริง ดนตรีไวโอลินชิ้นสำคัญของบัคก็ได้รับการเผยแพร่ไปแล้วเป็นส่วนใหญ่</p>
+
+  <p>บทความนี้มุ่งสืบค้นว่าผลงานโซโลชุดนี้ได้เดินทางผ่านโลกดนตรีอย่างไรตลอดช่วงเวลาศตวรรษครึ่งแรกนับแต่ปี <b>1720</b> (ปีที่ได้รับการประพันธ์) โดยวิเคราะห์จากทัศนะของนักแสดง ผู้จัดพิมพ์ ผู้เรียบเรียง และนักเขียน ตลอดจนถึงราวปี 1875</p>
+
+  <ul class="plain">
+    <li>การมีอยู่ของผลงานโซโลชุดนี้เป็นที่รู้จักมาตั้งแต่ประกาศศพ (necrology) ของบัคในปี <b>1754</b> แต่ไม่มีบทใดได้รับการตีพิมพ์เลยจนกระทั่งปลายคริสต์ศตวรรษที่ 18 ทั้งที่ตัวบัคเองได้ดัดแปลงผลงานเหล่านี้ไปใช้ในสื่อบทเพลงอื่น (ดูภาคผนวกที่ 1)</li>
+    <li>แม้นักดนตรีจะได้รู้จักผลงานเหล่านี้ในรูปแบบสิ่งพิมพ์ไม่นานหลังเปลี่ยนเข้าสู่คริสต์ศตวรรษที่ 19 ก็ตาม ผลงานเหล่านี้กลับถูกใช้เป็นเพียง <b>บทเรียนฝึกหัด</b> ในห้องเรียนเป็นสำคัญ</li>
+    <li>ในครึ่งแรกของคริสต์ศตวรรษที่ 19 มีการบรรเลงต่อสาธารณะน้อยครั้งมาก และหากมีการบรรเลงก็มักบรรเลงคู่กับ <b>เปียโนบรรเลงประกอบ</b></li>
+    <li>ในปี 1922 วิลเฮ็ล์ม อัลท์มัน ได้มอบมุมมองทางประวัติศาสตร์ให้แก่ผลงานโซโลชุดนี้ ด้วยการอ้างอิงสิ่งพิมพ์ต่าง ๆ ที่ปรากฏนับแต่ปี 1802 ในบทความดังกล่าว เขาคาดคะเนว่าศิษย์ของแฟร์ดินันด์ ดาวิด น่าจะได้ศึกษาผลงานโซโลเหล่านี้ ซึ่งเป็นการแสดงท่าทีคัดค้านข้อกล่าวอ้างของแอ็นสท์ คูร์ท ที่ว่าผลงานเหล่านี้ตกอยู่ในความลืมเลือนเกือบสมบูรณ์นับแต่ประพันธ์ขึ้น</li>
+  </ul>
+</section>
+
+<hr class="fleuron">
+
+<!-- ═══════════ PUBLICATIONS ═══════════ -->
+<section id="pubs">
+  <h2>ด้านสิ่งพิมพ์ (Publications)</h2>
+  <div class="h2-rule">❦</div>
+
+  <p class="noindent">ความนิยมของผลงานโซโลชุดนี้อาจมองได้ว่าถูกกำหนดเป็นหลักโดยปัจจัยบางประการในการจัดพิมพ์ ได้แก่ การคัดเลือกบทเพลงจากชุดโซโลมาตีพิมพ์ และความจริงที่ว่าผลงานถูกตีพิมพ์ในรูปแบบเรียบเรียงสำหรับเปียโนเดี่ยว และสำหรับไวโอลินพร้อมบทบรรเลงประกอบ</p>
+
+  <table>
+    <caption>ตารางที่ 1 &mdash; หมุดหมายการจัดพิมพ์ยุคแรก</caption>
+    <tr><th>ปี</th><th>ผู้จัดพิมพ์ / ผู้เรียบเรียง</th><th>รายละเอียด</th></tr>
+    <tr>
+      <td><b>1798</b></td>
+      <td>ฌ็อง-บาติสต์ การ์ติเย, <i>L&rsquo;Art du violon</i> (ปารีส)</td>
+      <td>ฟุกจากโซนาตาเรียกชื่อโด คัดจาก &ldquo;ต้นฉบับลายมือซึ่งอยู่ในความครอบครองของท่านประชาชนกาวินีเยส์&rdquo;</td>
+    </tr>
+    <tr>
+      <td><b>c. 1800</b></td>
+      <td>เดอคอมบ์ (Decombe), ปารีส</td>
+      <td><i>Trois sonates pour le violon seul sans basse</i> &mdash; น่าจะมีเพียงสามโซนาตา แต่ไม่รวมพาร์ติตา</td>
+    </tr>
+    <tr>
+      <td><b>1802</b></td>
+      <td>ซิมร็อค แห่งบอนน์</td>
+      <td><i>3 Sonate per il Violino solo senza Basso</i> &mdash; แม้ชื่อเรื่องจะระบุเพียงสามบท แต่นี่คือ <b>การตีพิมพ์ครบหกบทเป็นครั้งแรก</b> ประกาศใน *Allgemeine musikalische Zeitung*; ออกช้าเกินกว่าฟอร์เคิลจะทราบ จึงระบุในชีวประวัติปี 1802 ว่ายังไม่เคยตีพิมพ์</td>
+    </tr>
+    <tr>
+      <td><b>1843</b></td>
+      <td>แฟร์ดินันด์ ดาวิด / คิสท์เนอร์ ไลพ์ซิช</td>
+      <td>ฉบับสำหรับสถาบันดนตรีไลพ์ซิช &mdash; บทเพลงรูปแบบดั้งเดิม ปราศจากการเรียบเรียง พิมพ์ไว้ใต้ช่วงเสียงของผู้บรรเลง</td>
+    </tr>
+    <tr>
+      <td><b>1845</b></td>
+      <td>F. W. เรสเซิล</td>
+      <td>ชาโคนจากพาร์ติตาเรียกชื่อเร พร้อมบทบรรเลงคีย์บอร์ดประกอบ</td>
+    </tr>
+    <tr>
+      <td><b>1847</b></td>
+      <td>เรียบเรียงโดยเม็นเดิลส์โohn</td>
+      <td>ชาโคนพร้อมบทบรรเลงประกอบ ตีพิมพ์ไม่นานหลังฉบับของเรสเซิล</td>
+    </tr>
+  </table>
+
+  <p class="noindent">ชาโคนได้รับการตีพิมพ์ <b>ไม่น้อยกว่าหกครั้งก่อนปี 1850</b> หนึ่งในนั้นพิมพ์เพื่อจำหน่ายในลอนดอน บทวิจารณ์ใน *Caecilia* ชื่นชมฉบับของเรสเซิลว่าเขา &ldquo;ได้รับความชอบอย่างยิ่ง ด้วยบทบรรเลงเปียโนประกอบที่เพิ่มเข้ามา พร้อมการกำกับนิ้วและการเปลี่ยนธนู ซึ่งทำให้บทเพลงนี้เข้าถึงได้ง่ายและเพลิดเพลินสำหรับสาธารณชนกว้างขึ้น&rdquo;</p>
+
+  <h2 style="font-size:1.25rem;">สิ่งพิมพ์สำคัญในเวลาต่อมา</h2>
+  <div class="h2-rule">✦</div>
+
+  <ul class="plain">
+    <li><b>1854</b> &mdash; ชูมันน์ ตีพิมพ์ฉบับเรียบเรียงบทบรรเลงประกอบให้ครบทั้งชุด; ปีเดียวกัน เบอร์นาร์ด โมลิเค ตีพิมพ์บทคัดย่อจากโซโลทุกบท ยกเว้นบทเรียกชื่อเร พร้อมเปียโนประกอบ</li>
+    <li><b>c. 1856</b> &mdash; คาร์ล เดอบรอยส์ ฟัน บรุยค์ ถ่ายทอดโซโลทั้งหกบทลงเป็นบทเพลง <b>เปียโนเดี่ยว</b> &mdash; การตีพิมพ์ในรูปแบบนี้เป็นครั้งแรกอย่างไม่ต้องสงสัย; ปี 1858 F. L. ชูเบิร์ต ตีพิมพ์ชาโคนแยกเป็นบทถ่ายทอดสำหรับเปียโนเดี่ยว</li>
+    <li><b>1863</b> &mdash; แซงต์-ซองส์ ตีพิมพ์บทถ่ายทอด <i>Sechs Fragmente</i> สำหรับเปียโนเดี่ยว รวมบูเรเยจากพาร์ติตาเรียกชื่อซี และอันดันเตจากโซนาตาเรียกชื่อลา</li>
+    <li><b>1867&ndash;1869</b> &mdash; การเรียบเรียงชาโคนสำหรับเปียโนของโยอาคิม รัฟฟ์ (<i>Ausgew&auml;hlte St&uuml;cke aus den Violin-Sonaten</i>, เจ็ดเล่ม) ประกอบด้วยโซนาตาเรียกชื่อโซทั้งบท และท่วงส่วนใหญ่จากโซโลบทอื่น ยกเว้นเปรลูดีโอจากพาร์ติตาเรียกชื่อมี</li>
+    <li><b>1866 &amp; 1869</b> &mdash; ซารา ไฮน์เซอ แห่งไลพ์ซิช เรียบเรียงท่วงจากโซนาตาไวโอลินเดี่ยวและเชลโลเดี่ยวลงเป็นบทเปียโน &mdash; กาวอตต์เอินโรนโดและเปรลูดีโอจากพาร์ติตาเรียกชื่อมี บูเรเยจากพาร์ติตาเรียกชื่อซี</li>
+    <li><b>1867</b> &mdash; บทถ่ายทอดชาโคนสำหรับเปียโนเดี่ยวของแอ็นสท์ เพาเออร์; ชุด <i>Ausgew&auml;hlte Kompositionen</i> (1868) รวมซาราบันด์และบูเรเยพร้อมดับเบิลจากพาร์ติตาเรียกชื่อซี และเมนูเอตต์ บูเรเย กาวอตต์เอินโรนโดจากพาร์ติตาเรียกชื่อมี</li>
+    <li><b>1861</b> &mdash; ฉบับของคาร์ล วิททิง รวมโซโลสามบทแรกพร้อมชาโคน ในหนังสือ <i>Die Kunst des Violinspiels</i></li>
+    <li><b>1863</b> &mdash; บทคัดย่อของอาลาร์ สำหรับไวโอลินและเปียโน (เปียโนประกอบโดยฟรีดริช ลุกซ์) ในชุด <i>Die klassischen Meister des Violinspiels</i>: โซนาตาเรียกชื่อโซ พาร์ติตาเรียกชื่อเร และพาร์ติตาเรียกชื่อมี</li>
+    <li><b>1865</b> &mdash; ฉบับของเฮ็ลเมสแบร์เกอร์ รวมโซโลครบทั้งหกบทสำหรับไวโอลินเดี่ยว</li>
+    <li><b>ทศวรรษถัดมา</b> &mdash; การเรียบเรียงสำหรับวงออร์เคสตราของเปรลูดีโอโดยคาร์ล สเตอร์ และการเรียบเรียงชาโคนสำหรับเปียโนสี่มือโดยคาร์ล ไรเนเคอ</li>
+  </ul>
+
+  <p class="noindent">ประวัติการตีพิมพ์ยุคแรกสะท้อนว่าโซโลถูกละเลยอย่างแท้จริง ดังที่แอ็นสท์ คูร์ทเคยกล่าว ในครึ่งแรกของศตวรรษ โซโลถูกมองว่าเป็น <b>บทฝึกขั้นสูง</b> มีประโยชน์ในห้องเรียนมากกว่าเวทีบรรเลง &mdash; ทัศนคติเช่นนี้อาจได้รับอิทธิพลจากคำกล่าวของ <b>C. P. E. บัค</b> ที่จัดให้ผลงานชุดนี้มีคุณค่าสูงในฐานะเครื่องมือสร้างทักษะเทคนิคการบรรเลง</p>
+</section>
+
+<hr class="fleuron">
+
+<!-- ═══════════ LITERATURE ═══════════ -->
+<section id="lit">
+  <h2>ด้านวรรณกรรมวิชาการ (Literature)</h2>
+  <div class="h2-rule">❦</div>
+
+  <p class="noindent">การอ้างอิงลายลักษณ์อักษรเรื่องโซโลไวโอลินไม่มีเบสประกอบที่เก่าแก่ที่สุดปรากฏใน <b>ประกาศศพของบัค</b> ที่ตีพิมพ์ใน <i>Musikalische Bibliothek</i> ของมิตซ์เลอร์ (<b>1754</b>) ประกาศศพนี้เขียนโดย C. P. E. บัค และโยฮัน ฟรีดริช อากรีโคลา โดยแยกบัญชีผลงานที่ตีพิมพ์แล้วและยังไม่ตีพิมพ์ออกจากกัน โยฮัน นีโคเลาส์ ฟอร์เคิล ใช้การแบ่งประเภทเช่นเดียวกันในชีวประวัติบัคปี 1802 โดยได้รับข้อมูลส่วนใหญ่จาก C. P. E. บัค ผู้ให้ข้อสังเกตว่า:</p>
+
+  <blockquote>
+    &ldquo;เขา [บัค] เข้าใจอย่างลึกซึ้งถึงความเป็นไปได้ทั้งปวงของเครื่องสายทุกชนิด หลักฐานปรากฏจากบทเพลงโซโลสำหรับไวโอลินและเชลโลของเขาที่ไม่มีเบสประกอบ นักไวโอลินผู้ยิ่งใหญ่ท่านหนึ่งเคยบอกข้าพเจ้าว่า ไม่เคยเห็นสิ่งใดสมบูรณ์แบบยิ่งกว่าสำหรับการฝึกฝนเพื่อเป็นนักไวโอลินที่ดี และไม่สามารถเสนอสิ่งใดดีกว่าโซโลไวโอลินไร้เบสประกอบชุดนี้แก่ผู้ใฝ่เรียนรู้ได้อีกเลย&rdquo;
+    <footer>&mdash; C. P. E. Bach, อ้างในชีวประวัติของฟอร์เคิล (1802)</footer>
+  </blockquote>
+
+  <p class="noindent">ฟอร์เคิลเขียนไว้ว่า: <i>&ldquo;ตลอดหลายปี โซโลไวโอลินถูกพิจารณาโดยทั่วไปในหมู่นักไวโอลินผู้เยี่ยมยอดที่สุด ว่าเป็นวิธีที่ดีที่สุดที่จะทำให้ผู้เรียนผู้มีความทะเยอทะยานกลายเป็นครูผู้ชำนาญแห่งเครื่องดนตรีของตน&rdquo;</i></p>
+
+  <h2 style="font-size:1.25rem;">เหล่าผู้วิจารณ์และนักเขียนที่สำคัญ</h2>
+  <div class="h2-rule">✦</div>
+
+  <ul class="plain">
+    <li><b>คีร์นแบร์เกอร์</b> (<i>Die Kunst des reinen Satzes</i>, 1774): ศิษย์ของบัค คุ้นเคยกับโซโลเป็นอย่างดี และกล่าวว่าเป็นไปไม่ได้ที่จะเพิ่มช่วงเสียงประกอบให้ผลงานเหล่านี้โดยปราศจากความผิดพลาด</li>
+    <li><b>ฟอร์เคิล</b> (<i>Ueber Johann Sebastian Bachs Leben, Kunst, und Kunstwerk</i>, 1802): ขยายแนวคิดของคีร์นแบร์เกอร์ขึ้นเป็นหลักการประพันธ์ดนตรี &mdash; บัคประดิษฐ์ทำนองเดี่ยวขึ้นในลักษณะที่ไม่อาจตั้งช่วงเสียงที่สองซึ่งขับร้องได้ขึ้นต่อต้านมัน โน้ตทั้งปวงที่จำเป็นต่อความสมบูรณ์ของการเปลี่ยนคีย์ถูกรวมไว้ในช่วงเสียงเดียว จนช่วงเสียงที่สอง &ldquo;ไม่จำเป็นและเป็นไปไม่ได้&rdquo;</li>
+    <li><b>คือนเนา</b> (<i>Die blinden Tonk&uuml;nstler</i>, 1810): <b>ละเลิกกล่าวถึงโซโล</b> &mdash; น่าจะเพราะพึ่งพาฟอร์เคิล และส่งผู้อ่านไปยังงานของ J. A. ฮิลเลอร์ (1784)</li>
+    <li><b>แอ็นสท์ ลุดวิช เกอร์เบอร์</b>: การละเลิกที่อธิบายยากยิ่งกว่า &mdash; เขาคุ้นเคยกับดนตรีบัคดี <i>Neues historisch-biographisches Lexikon der Tonk&uuml;nstler</i> ของเขากล่าวถึงซูอิทเชลโลเดี่ยว แต่ <b>เงียบงัน</b> เรื่องโซนาตาและพาร์ติตาไวโอลิน</li>
+    <li><b>เซนส์เบอรี</b> (<i>A Dictionary of Musicians</i>, 1824): ยกย่องบัคว่าเป็นนักบรรเลงผู้ยิ่งใหญ่จากโซโลไวโอลิน แต่ว่าด้วยโซโลเพียงว่าเป็น &ldquo;งานชิ้นเอกอันเป็นหนึ่งเดียว [sic]&rdquo;</li>
+    <li><b>นักวิจารณ์นิรนาม</b> (<i>The [London] Musical World</i>, 1838): อ้างธรรมเนียมสมัยบัคที่บรรเลงโซโลหรือคอนแชร์โตก่อนพิธีศีลมหาสนิท ว่าเป็นที่มาแห่งโซโล &mdash; และตีความชื่อเรื่องตามตัวอักษร เชื่อว่าฉบับนั้นมีเพียงสามโซนาตา ทั้งที่พาร์ติตาทั้งสามบรรจุไว้เป็นภาคผนวก</li>
+    <li><b>อ็อสวัลด์ ลอเรนทซ์</b> (<i>Neue Zeitschrift f&uuml;r Musik</i>, มกราคม 1844): ชื่นชมการที่ดาวิดบรรจุรูปแบบดั้งเดิมไว้ใต้ช่วงเสียงผู้บรรเลง แต่เห็นว่าบทบรรเลงคลาเฟียร์ประกอบคงเป็นสิ่งที่ยินดียิ่งกว่า โดยอ้างการบรรเลงชาโคนของดาวิดพร้อมบทประกอบของเม็นเดิลส์โohn</li>
+    <li><b>ผู้วิจารณ์นิรนาม</b> (<i>Allgemeine musikalische Zeitung</i>): ยกโซโลเป็นหลักฐานว่านักดนตรีเด่นยุคปัจจุบันมิได้ &ldquo;ก้าวไกลกว่าสมัยก่อน&rdquo; พร้อมอุทานว่า &ldquo;บรรดาความยากลำบากมากมายเพียงใด ที่นักไวโอลินผู้ซึ่งเขา [บัค] ประพันธ์เพื่อ ต้องเอาชนะ!&rdquo;</li>
+    <li><b>ผู้วิจารณ์ฉบับของเรสเซิล</b> (<i>Caecilia</i>, 1846): &ldquo;บัคไม่มีวันและจะไม่มีวันเป็นที่นิยมแท้จริง แต่เขาจะชนะใจผู้ชมส่วนที่ยกการรับรู้แห่งศิลปะเหนือสิ่งเร้าแห่งประสาทสัมผัสอันเปล่าดาย (<i>Sinnenreiz</i>) เสมอ และผู้ชมส่วนนี้คือผู้มีวัฒนธรรมอันแท้จริง&rdquo;</li>
+    <li><b>C. L. ฮิลเกินเฟลดท์</b> (1850): ย้ำแนวคิดของคีร์นแบร์เกอร์ว่าโซโล &ldquo;ไม่ต้องการบทประกอบและไม่ยอมรับบทประกอบ&rdquo; โดยอ้างหลักการ <b>พอลิโฟนี</b> &mdash; แนวทำนองหนึ่งอธิบายเหตุผลโดยแนวทำนองอื่น ตามสัมพันธ์เชิงช่วงเสียง อัตลักษณ์เชิงจังหวะ และเส้นสายทำนอง</li>
+    <li><b>แฟร์ดินันด์ เลาเรนซิน</b> (<i>NZM</i>, 1856): โซโลในรูปแบบดั้งเดิมไม่เป็นประโยชน์ทั้งในห้องแคมเบอร์และเวทีคอนเสิร์ต มีค่าเชิงประวัติศาสตร์เท่านั้น แต่ด้วยความสร้างสรรค์เชิงปัญญา ผลงานควรได้รับการอนุรักษ์ &mdash; ด้วยการ &ldquo;กู้คืนจากขอบเขตอันบางเบา&rdquo;</li>
+    <li><b>C. H. บิทเทอร์</b> (ชีวประวัติสองเล่ม, 1865): เพียงอ้างคีร์นแบร์เกอร์ พร้อมเสริมว่าจำเป็นต้องมีทักษะเฉพาะชนิดหนึ่งเพื่อแสดงโมทีฟต่าง ๆ ให้ชัดเจนแจ่มแหวม</li>
+    <li><b>ยูลิอุส รือล์มัน</b> (<i>AMZ</i>, 1865): กล่าวถึงโซโลเพียงผ่านเลย ว่าผลงานเหล่านี้ &ldquo;ยืนเดี่ยวเดือนในประเภทของมันเอง&rdquo;</li>
+    <li><b>วาซีเอเลฟสกี</b> (<i>Die Violine und ihre Meister</i>, 1869): ประเมินบัคในฐานะคีตกวีผู้รับใช้จุดมุ่งหมายทางศาสนาภายใน &mdash; ผลงานของตาร์ตีนี &ldquo;ไหลออกมาจากธรรมชาติแห่งไวโอลิน&rdquo; แต่โซโลของบัค &ldquo;สะท้อน โดยเฉพาะในการดำเนินแนวพอลิโฟนีอย่างต่อเนื่อง ถึงการพิชิตของจิตวิญญาณเหนือสสารอันจำกัด&rdquo;</li>
+    <li><b>ชปิททา</b>: เล่มแรกของงานศึกษาอันยิ่งใหญ่ปรากฏปี <b>1873</b> แต่เล่มที่สอง ซึ่งกล่าวถึงโซโลอย่างละเอียด มิได้ปรากฏจนถึงปี <b>1879</b> &mdash; วรรณกรรม &ldquo;สมัยใหม่&rdquo; บทแรก และอยู่นอกขอบข่ายของบทความนี้</li>
+  </ul>
+</section>
+
+<hr class="fleuron">
+
+<!-- ═══════════ CONCLUSION ═══════════ -->
+<section id="conclusion">
+  <h2>บทสรุป</h2>
+  <div class="h2-rule">❦</div>
+
+  <p class="dropcap noindent">นักเขียนที่ให้ความสนใจกับโซโล ก่อนการปรากฏของงานศึกษาของชปิททา ล้วนเสนอการตัดสินผลงานที่ไม่สมบูรณ์ที่สุดก็ตาม โดยความเป็นธรรม ต้องกล่าวว่า นักวิชาการดนตรีแห่งคริสต์ศตวรรษที่ 19 พยายามทบทวนโซโลในกรอบแนวคิดทางดนตรีที่ดำรงอยู่ในสมัยของพวกเขา แต่พวกเขาพลาดพลาดโดยคลุมเครือผลงานของบัคด้วยประการแรก <b>การเพิ่มเติมเชิงฮาร์มอนิกในรูปของบทบรรเลงประกอบ</b> และประการที่สอง <b>ข้ออ้างว่าด้วยความหมายทางศาสนา</b> การอภิปรายโซโลแต่ละครั้งใหม่ ๆ พึ่งพางานเขียนเก่าอย่างหนักและทวีความผิดพลาดสืบไป มิได้ค้นคว้าความรู้แห่งดนตรีโดยการศึกษาดนตรีเองเลย</p>
+</section>
+
+<!-- ═══════════ FOOTNOTES ═══════════ -->
+<section id="notes">
+  <h2>เชิงอรรถ</h2>
+  <div class="h2-rule">❦</div>
+
+  <ol class="footnotes">
+    <li>โซนาตาและพาร์ติตาสำหรับไวโอลินไม่มีเบสประกอบ ระบุชื่อว่า &ldquo;Solos&rdquo; บนหน้าปกต้นฉบับลายมือ และจะเรียกว่า &ldquo;โซโล&rdquo; ตลอดบทความนี้ ผลงานควรได้รับการตีพิมพ์ในปีที่ 27 ของฉบับ Bach-Gesellschaft แต่เล่มดังกล่าวมิได้ปรากฏจริงจนถึงปี 1879</li>
+    <li>Wilhelm Altmann, <i>Zur Verbreitung von Bachs Sonaten und Suiten f&uuml;r Violine bzw. Violoncell allein</i>, Die Musik, XV, Part I (1922&ndash;23), pp. 206&ndash;207.</li>
+    <li>Jean-Baptiste Cartier, <i>L&rsquo;Art du Violon</i>. (Paris: Decombe, 1798), p. 327.</li>
+    <li>G&uuml;nter Hausswald and Rudolf Gerber, <i>Kritischer Bericht</i> to series VI, vol. 1 of <i>Neue Ausgabe s&auml;mtlicher Werke</i> by Johann Sebastian Bach (Kassel: B&auml;renreiter, 1958), p. 52.</li>
+    <li>In Kathi Meyer and Paul Hirsch, <i>Katalog der Musikbibliothek Paul Hirsch Frankfurt am Main</i>, vol. 3 (Berlin: Martin Breslauer, 1928&ndash;47), p. 28, the contents are given as &ldquo;Nr. 1&ndash;3.&rdquo;</li>
+    <li>AMZ 5 (1802), col. 44.</li>
+    <li>Page 115.</li>
+    <li><i>Caecilia</i> 25 (1846), p. 103.</li>
+    <li>Max Schneider, <i>Verzeichnis der bis zum Jahre 1851 gedruckten Werke von Johann Sebastian Bach</i>, Bach Jahrbuch 3 (1906), p. 104.</li>
+    <li>เว้นแต่จะระบุไว้เป็นอย่างอื่น ข้อมูลการตีพิมพ์มาจาก <i>Handbuch der musikalischen Literatur</i> (Leipzig: Friedrich Hofmeister, 1818&ndash;1843) หรือ <i>Musikalisch-literarischer Monatsbericht</i> (Leipzig: Friedrich Hofmeister, 1852&ndash; )</li>
+    <li>Musikalisches Wochenblatt 2 (1871), p. 841.</li>
+    <li>Wilhelm Altmann, <i>Kammermusik-Katalog</i> (Leipzig: Friedrich Hofmeister, 1945), p. 113.</li>
+    <li>AMZ 46 (1844), col. 169.</li>
+    <li>ดูด้านล่าง</li>
+    <li>คำแปลภาษาอังกฤษปรากฏใน Hans T. David and Arthur Mendel, eds., <i>The Bach Reader</i> (New York: W. W. Norton, 1966), pp. 215&ndash;224.</li>
+    <li>จดหมายถึงฟอร์เคิล อ้างใน ibid., p. 277.</li>
+    <li>Ibid., p. 346. เขาอาจหมายถึง J. G. Pisendel ดูด้านบน, p. 12, n. 35.</li>
+    <li>Johann Philipp Kirnberger, <i>Die Kunst des reinen Satzes in der Musik</i>, vol. 1 (Berlin: G. J. Decker &amp; G. L. H&auml;rtung, 1774), p. 176.</li>
+    <li>C. H. Bitter, <i>Johann Sebastian Bach</i>, vol. 2 (Berlin: Ferdinand Schneider, 1865), p. 295.</li>
+    <li>See the Neue Zeitschrift f&uuml;r Musik 12 (1840), p. 160 and Philipp Spitta, <i>Johann Sebastian Bach</i>, trans. Clara Bell and J. A. Fuller Maitland, vol. 2 (London: Novello, 1899; reprinted., New York: Dover, 1951), p. 98.</li>
+    <li>David and Mendel, p. 323.</li>
+    <li>Johann Christoph Wilhelm K&uuml;hnau, <i>Die blinden Tonk&uuml;nstler</i> (Berlin: C. Salfeld, 1810), pp. 18&ndash;19.</li>
+    <li>Ernst Ludwig Gerber, <i>Neues Historisch-biographisches Lexikon der Tonk&uuml;nstler</i>, vol. 1 (Leipzig: A. K&uuml;hnel, 1812; reprint ed., Graz: Akademische Druck-u. Verlagsanstalt, 1966), col. 213.</li>
+    <li>John S. Sainsbury, <i>A Dictionary of Musicians</i>, vol. 1 (London, 1825; reprint ed., New York: Da Capo Press, 1966), p. 49.</li>
+    <li>See Hausswald and Gerber, p. 52.</li>
+    <li>David and Mendel, p. 346.</li>
+    <li><i>The Musical World</i> 8 (1838), p. 262.</li>
+    <li>AMZ 46 (1844), p. 169.</li>
+    <li><i>Caecilia</i> 25 (1846), p. 103.</li>
+    <li>C. L. Hilgenfeldt, <i>Johann Sebastian Bachs Leben, Wirken und Werke</i> (Leipzig, 1850; reprint ed., Hilversum: Frits A. M. Knuf, 1965), p. 67.</li>
+    <li>NZM 45 (1856), p. 650.</li>
+    <li>Bitter, p. 294.</li>
+    <li>AMZ second series, 3 (1865), p. 650.</li>
+    <li>Wilhelm Joseph von Wasielewski, <i>Die Violine und ihre Meister</i>, 3rd ed. (Leipzig: Breitkopf und H&auml;rtel, 1893), p. 213.</li>
+  </ol>
+</section>
+
+<!-- ═══════════ POSTSCRIPT ═══════════ -->
+<section id="postscript">
+  <aside class="postscript">
+    <h3>⚜ ภาคผนวก: จากโต๊ะบรรณาธิการ</h3>
+    <p>เราขอขอบคุณดร. เอวัลด์ โนลเท สำหรับสารที่ส่งมาเกี่ยวกับเลขหมายห้องเพลง (measure numbers) ที่ปรากฏทั้งสองหน้าของ Contrapunctus I จากสิ่งพิมพ์ปี 1752 ฉบับของเราว่าด้วย <i>Die Kunst der Fuge</i> (ดู BACH, มกราคม 1981, pp. [31, 32])</p>
+    <p>ดังที่ได้ชี้แจงไว้ใน &ldquo;หมายเหตุบรรณาธิการ&rdquo; ที่เพิ่มเข้าไปในหน้าปกของ &ldquo;โครงการพิมพ์เทียบต้นฉบับเนื่องในวาระ 300 ปีบัค&rdquo; ฉบับนี้ เครื่องหมายเหล่านี้ถูกใส่เพิ่มด้วยหมึก แม้สีและสภาพของรอยหมึกจะชี้นำไปสู่การเขียนเสริมยุคแรก ๆ แต่ตัวเลขเหล่านี้ดูจะมิใช่ของผู้เขียนหมายเหตุซึ่งวางอยู่ติดกับป้ายหนังสือของไฮน์ริช เบลเลอร์มัน ซึ่งแปะอยู่ฝาในปกของสิ่งพิมพ์ <i>Die Kunst der Fuge</i> ฉบับปี 1752 ของเรา</p>
+  </aside>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="ornament-line">✦ ✦ ✦</div>
+  <p>อ้างอิง: Sevier, Zay David. &ldquo;Bach&rsquo;s Solo Violin Sonatas and Partitas: The First Century and a Half, Part 1.&rdquo; <i>Bach</i> 12, no. 2 (1981): 11&ndash;19.<br>Riemenschneider Bach Institute &middot; jstor.org/stable/41640128</p>
+</footer>
+
+</div>
+</body>
+</html>
