@@ -1,4 +1,4 @@
-import { Chord, Scale } from 'tonal';
+const { Chord, Scale } = Tonal;
 
 const resultEl = document.getElementById('result');
 const scaleResultEl = document.getElementById('scaleResult');
@@ -31,5 +31,4 @@ function showScale() {
   }
 }
 
-// Auto-demo on load
 showChord('F#M');
