@@ -32,7 +32,7 @@
     <h2>🔍 Check a Chord</h2>
     <p>Enter a chord name (e.g. C, F#M, Dbdim, G7):</p>
     <input type="text" id="chordInput" placeholder="e.g. C, F#M, Bbmin7">
-    <button onclick="showChord()">Get Notes</button>
+    <button id="chordBtn">Get Notes</button>
     <div id="result"></div>
   </div>
   <div class="card">
@@ -40,7 +40,7 @@
     <p>Choose a key and scale type:</p>
     <select id="scaleKey"><option>C</option><option>F#</option><option>Db</option><option>G</option><option>Bb</option></select>
     <select id="scaleType"><option>major</option><option>minor</option><option>dorian</option><option>mixolydian</option><option>pentatonic</option></select>
-    <button onclick="showScale()">Show Scale</button>
+    <button id="scaleBtn">Show Scale</button>
     <div id="scaleResult"></div>
   </div>
 </main>

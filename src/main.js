@@ -3,12 +3,14 @@ const { Chord, Scale } = Tonal;
 const resultEl = document.getElementById('result');
 const scaleResultEl = document.getElementById('scaleResult');
 
+document.getElementById('chordBtn').addEventListener('click', showChord);
 document.getElementById('chordInput').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') showChord();
 });
+document.getElementById('scaleBtn').addEventListener('click', showScale);
 
-function showChord(name) {
-  const chordName = name || document.getElementById('chordInput').value.trim();
+function showChord() {
+  const chordName = document.getElementById('chordInput').value.trim();
   if (!chordName) { resultEl.textContent = 'Enter a chord name'; return; }
   try {
     const chord = Chord.get(chordName);
