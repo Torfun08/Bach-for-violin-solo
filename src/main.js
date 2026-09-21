@@ -5,20 +5,23 @@ const scaleResultEl = document.getElementById('scaleResult');
 const earResultEl = document.getElementById('earResult');
 const scoreEl = document.getElementById('score');
 
-// ── Web Audio API ──
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
+// ── Web Audio API (iOS needs resume in user gesture) ──
+let audioCtx = null;
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
 function playNote(freq, startTime, duration = 0.5) {
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
+  const ctx = getAudioCtx();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
   osc.type = 'triangle';
   osc.frequency.setValueAtTime(freq, startTime);
   gain.gain.setValueAtTime(0.25, startTime);
   gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  osc.start(startTime);
-  osc.stop(startTime + duration);
+  osc.connect(gain); gain.connect(ctx.destination);
+  osc.start(startTime); osc.stop(startTime + duration);
 }
 
 const NOTE_NAMES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
