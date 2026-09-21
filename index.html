@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bach Solo Violin — Interactive Music Theory</title>
+<style>
+  :root { --green-deep:#0a2f23; --green-dark:#123f30; --gold:#c9a227; --cream:#f4ecd9; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:Georgia,serif; background:var(--green-deep); color:var(--cream); line-height:1.8; }
+  header { background:linear-gradient(135deg,#3e2f1c,#6b4a2a); padding:50px 30px; text-align:center; border-bottom:3px solid var(--gold); }
+  header h1 { color:var(--gold); font-size:2rem; }
+  header p { opacity:.8; font-style:italic; }
+  header a { color:var(--gold); }
+  main { max-width:800px; margin:0 auto; padding:30px 20px; }
+  .card { background:rgba(201,162,39,.08); border:1px solid rgba(201,162,39,.3); border-radius:12px; padding:24px; margin-bottom:24px; }
+  .card h2 { color:var(--gold); margin-bottom:14px; }
+  input, select { background:rgba(0,0,0,.3); color:var(--cream); border:1px solid var(--gold); padding:10px 14px; border-radius:8px; font-size:1rem; font-family:Georgia,serif; width:100%; }
+  button { background:var(--gold); color:var(--green-deep); border:none; padding:12px 28px; border-radius:8px; font-size:1rem; font-weight:bold; cursor:pointer; font-family:Georgia,serif; margin-top:10px; }
+  button:hover { opacity:.85; }
+  #result, #scaleResult { margin-top:16px; padding:16px; background:rgba(0,0,0,.25); border-radius:8px; font-size:1.1rem; }
+  footer { text-align:center; padding:24px; border-top:1px solid rgba(201,162,39,.3); color:rgba(244,236,217,.6); font-size:.9rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>&#119070; Bach Solo Violin</h1>
+  <p>Interactive Music Theory powered by <a href="https://tonaljs.github.io/tonal/" target="_blank">Tonal.js</a></p>
+</header>
+<main>
+  <div class="card">
+    <h2>🔍 Check a Chord</h2>
+    <p>Enter a chord name (e.g. C, F#M, Dbdim, G7):</p>
+    <input type="text" id="chordInput" placeholder="e.g. C, F#M, Bbmin7">
+    <button onclick="showChord()">Get Notes</button>
+    <div id="result"></div>
+  </div>
+  <div class="card">
+    <h2>🎼 Scale Explorer</h2>
+    <p>Choose a key and scale type:</p>
+    <select id="scaleKey"><option>C</option><option>F#</option><option>Db</option><option>G</option><option>Bb</option></select>
+    <select id="scaleType"><option>major</option><option>minor</option><option>dorian</option><option>mixolydian</option><option>pentatonic</option></select>
+    <button onclick="showScale()">Show Scale</button>
+    <div id="scaleResult"></div>
+  </div>
+</main>
+<footer>Powered by Tonal.js &middot; Bach's Solo Violin Sonatas &amp; Partitas</footer>
+<script type="importmap">
+{
+  "imports": {
+    "tonal": "/node_modules/tonal/dist/index.js"
+  }
+}
+</script>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

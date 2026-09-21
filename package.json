@@ -1,23 +1,15 @@
 {
-  "name": "site",
+  "name": "bach-violin-solo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Bach Solo Violin Sonatas & Partitas — interactive music theory site powered by Tonal.js",
+  "main": "src/main.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node server.js",
+    "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Torfun08/Bach-for-violin-solo.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Torfun08/Bach-for-violin-solo/issues"
-  },
-  "homepage": "https://github.com/Torfun08/Bach-for-violin-solo#readme",
+  "keywords": ["bach", "violin", "tonal", "music-theory"],
+  "license": "MIT",
   "dependencies": {
     "tonal": "^6.4.3"
   }
