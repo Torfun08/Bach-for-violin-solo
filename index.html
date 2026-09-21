@@ -43,6 +43,17 @@
     <button id="scaleBtn">Show Scale</button>
     <div id="scaleResult"></div>
   </div>
+  <div class="card">
+    <h2>👂 Ear Training — Interval Trainer</h2>
+    <p>เลือกช่วงเสียง (interval) แล้วกด Play เพื่อฟัง จากนั้นทายชื่อinterval:</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+      <select id="intSel"><option value="">-- เลือก interval --</option><option>m2</option><option>M2</option><option>m3</option><option>M3</option><option>P4</option><option>A4</option><option>P5</option><option>m6</option><option>M6</option><option>m7</option><option>M7</option><option>P8</option></select>
+      <button id="playBtn">▶ Play</button>
+      <button id="quizBtn">🎲 Quiz</button>
+    </div>
+    <div id="earResult" style="min-height:24px;font-size:1.1rem;"></div>
+    <div id="score" style="margin-top:10px;color:var(--gold);font-weight:bold;"></div>
+  </div>
 </main>
 <footer>Powered by Tonal.js &middot; Bach's Solo Violin Sonatas &amp; Partitas</footer>
 <script src="/node_modules/tonal/browser/tonal.min.js"></script>
